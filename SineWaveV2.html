@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sine Wave V2</title>
+</head>
+<body>
+
+    <h3><a href="SineWave.html">Sine Wave V1</a></h3>
+
+    <h1>Sine Wave V2</h1>
+    
+    
+    <canvas id="mycanvas" width="600" height="400" onMouseOver="overColor();" onMouseOut="leaveColor();"></canvas>
+    <script>
+        			function init() {
+			  setInterval(OnDraw, 300);
+			}
+
+			var time = 0;
+			var color = "#ff0000";
+      var i = 0;
+      var canvas = document.getElementById("mycanvas");
+      var ctx = canvas.getContext("2d");
+      var amplitude = 0.03;
+      var crisp = 0.2;
+
+			function OnDraw() {
+			  time = time + 1;
+			  var value = 3; //for line width
+        
+			  ctx.clearRect(0, 0, canvas.width, canvas.height);
+			  ctx.beginPath();
+			  ctx.moveTo(-5, canvas.height * 0.5);
+          
+          /*old for loop starts here*/
+        
+                 for (i = 0; i <= canvas.height; i++) {  
+ctx.lineTo(i, canvas.height * 0.5 - (Math.random() * crisp + Math.cos(time + i * amplitude) * 30));
+/*ctx.lineTo(i, canvas.height * 0.5 - (Math.random() * 2 + Math.cos(time + i * 0.05) * 20)); Increse, decrease, remove random to sharpen or crisp*/
+          			  }
+        
+/*  		 	if (i <= canvas.width) {
+        i++;
+document.getElementById("demo").innerHTML = i+ " e " + (300 - (Math.cos(time + i * 0.05) * 20));
+        ctx.lineTo(i, 300 - (Math.cos(time + i * 0.05) * 20));
+			  } else {i = -1}
+*/
+        ctx.lineWidth = value;
+			  ctx.strokeStyle = color;
+			  ctx.stroke();
+	}
+
+			function overColor() {
+			  color = "#ff0000";
+			}
+
+			function leaveColor() {
+			  color = "#0000ff";
+			}
+
+			
+init();
+    </script>
+    
+</body>
+</html>

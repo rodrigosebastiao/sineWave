@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sine Wave V1</title>
+</head>
+<body>
+
+    <h3><a href="SineWaveV2.html">Sine Wave V2</a></h3>
+
+    <h1>Sine Wave V1</h1>
+
+    <canvas id="myCanvas" width="360" height="360" style="border:1px solid #d3d3d3;">
+    
+    <script>
+    var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+        var i;
+
+        for (i = 0; i < 360; i += 20) {
+            ctx.moveTo(i + 5, 180);
+            ctx.lineTo(i, 180);
+        }
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(0, canvas.height * 0.5);
+        /*____________________________________________________________________*/
+
+        var counter = 0, x = 0, y = 180;
+        var phase = 9;
+        var Amp = 20;
+
+        setInterval(wave, 200);
+
+        function wave() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.moveTo(0, canvas.height * 0.5);
+            ctx.beginPath();
+
+            //100 iterations
+            var increase = 90 / 180 * Math.PI / 9;
+            for (x = 0; x <= canvas.height; x++) {
+                x += 8;
+                y = 180 - Math.sin(counter) * Amp;
+                counter += increase;
+                ctx.lineTo(x, y);
+                ctx.stroke();
+                //alert( " x : " + x + " y : " + y + " increase : " + counter ) ;
+                console.log(x + ', ' + y);
+            }
+        }
+
+    </script>
+</body>
+</html>
